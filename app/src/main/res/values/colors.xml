@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+    <color name="white_ffffff">#ffffff</color>
+    <color name="transparent">#00000000</color>
+    <color name="white_fffefe">#fffefe</color>
+    <color name="black_333333">#333333</color>
+    <color name="black_012d75">#012d75</color>
+    <color name="black_373737">#373737</color>
+    <color name="grey_999999">#999999</color>
+    <color name="grey_666666">#666666</color>
+    <color name="grey_a6a6a6">#a6a6a6</color>
+    <color name="grey_737373">#737373</color>
+    <color name="grey_d0d0d0">#D0D0D0</color>
+    <color name="grey_d9d9d9">#D9D9D9</color>
+    <color name="grey_ebebeb">#D0D0D0</color>
+    <color name="grey_f2f2f2">#f2f2f2</color>
+    <color name="grey_e0e0e0">#e0e0e0</color>
+    <color name="grey_b3b3b3">#b3b3b3</color>
+    <color name="blue_5691fc">#5691fc</color>
+    <color name="blue_2d82ff">#2d82ff</color>
+    <color name="blue_0099ff">#0099ff</color>
+    <color name="mildmac_blue_386384">#386384</color>
+    <color name="mildmac_grey">#424243</color>
+    <color name="mildmac_unable_blue">#FF6F97B4</color>
+    <color name="mildmac_orange">#e7501e</color>
+</resources>

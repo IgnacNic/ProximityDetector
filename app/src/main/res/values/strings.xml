@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Escaner</string>
+    <string name="no">No</string>
+    <string name="yes">Si</string>
+    <string name="battery">Batería:</string>
+    <string name="n_a">N/A</string>
+    <string name="cancel">Cancelar</string>
+    <string name="search">Buscar</string>
+</resources>
