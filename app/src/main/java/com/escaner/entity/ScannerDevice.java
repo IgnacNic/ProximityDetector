@@ -44,10 +44,14 @@ public class ScannerDevice {
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return (name == null ? "Unnamed: \n" : name.toUpperCase() + ": \n") +
                 "\t\tMac addr.: " + mac.toUpperCase() + ",\n" +
                 "\t\tBattery:   " + battery + "%,\n" +
                 "\t\tAdv RSSI:  " + rssi + ".\n";
+    }
+
+    public void setRssi(int rssi) {
+        this.rssi = rssi;
     }
 }

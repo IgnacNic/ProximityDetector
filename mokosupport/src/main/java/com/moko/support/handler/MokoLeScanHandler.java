@@ -4,7 +4,6 @@ import android.bluetooth.BluetoothDevice;
 
 import com.moko.support.callback.MokoScanDeviceCallback;
 import com.moko.support.entity.DeviceInfo;
-import com.moko.support.log.LogModule;
 import com.moko.support.utils.MokoUtils;
 
 import no.nordicsemi.android.support.v18.scanner.ScanCallback;
@@ -61,7 +60,6 @@ public class MokoLeScanHandler extends ScanCallback {
             return null;
 
         if (isMokoBeacon){
-            LogModule.e(MokoUtils.hex2String(aux.substring(36,length*2 + 8)));
             return MokoUtils.hex2String(aux.substring(36,length*2 + 8));
         }
         else {

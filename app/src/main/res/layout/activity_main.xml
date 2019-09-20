@@ -10,35 +10,17 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="55dp"
-        android:background="@color/colorPrimaryDark">
+        android:background="@color/blue_50619f">
 
 
 
     </RelativeLayout>
 
-    <RelativeLayout
-        android:id="@+id/rl_scanner"
+    <FrameLayout
+        android:id="@+id/frame_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent" />
 
-
-
-        <ListView
-            android:id="@+id/lv_devices"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="10dp"
-            android:cacheColorHint="@color/transparent"
-            android:clipToPadding="true"
-            android:divider="@color/transparent"
-            android:dividerHeight="10dp"
-            android:headerDividersEnabled="false"
-            android:listSelector="@color/transparent"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:scrollbarStyle="outsideOverlay" />
-
-    </RelativeLayout>
 
 
 </LinearLayout>

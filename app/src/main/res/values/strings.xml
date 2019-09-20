@@ -6,4 +6,7 @@
     <string name="n_a">N/A</string>
     <string name="cancel">Cancelar</string>
     <string name="search">Buscar</string>
+    <string name="arrow">▼</string>
+    <string name="nombre">NOMBRE</string>
+    <string name="escanear">Escanear</string>
 </resources>

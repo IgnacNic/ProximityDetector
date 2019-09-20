@@ -5,12 +5,9 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.escaner.services.ScannerService;
 import com.escaner.entity.ScannerDevice;
 import com.example.escaner.R;
 import com.moko.support.utils.MokoUtils;
@@ -27,8 +24,7 @@ public class BeaconListAdapter extends BaseAdapter<ScannerDevice> {
     private String[] selAux;
     private View view;
     private boolean wasInvisible = true;
-    private OnAcceptListener oAListener;
-    private OnDismissListener oDListener;
+    private OnPlayListener oPListener;
 
     public BeaconListAdapter(Context context) {
         super(context);
@@ -45,6 +41,13 @@ public class BeaconListAdapter extends BaseAdapter<ScannerDevice> {
         hold = holder;
         double distance = MokoUtils.getDistance(-75, device.getRssi());
         holder.tvName.setText(TextUtils.isEmpty(device.getName()) ? "N/A" : device.getName());
+        holder.tvRSSI.setText("" + device.getRssi());
+        holder.ivStart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                oPListener.onPlayClicked(device);
+            }
+        });
         int pulsera;
         try {
             holder.tvMac.setText(device.getMac());
@@ -52,10 +55,9 @@ public class BeaconListAdapter extends BaseAdapter<ScannerDevice> {
             holder.tvMac.setText("NÚMERO:");
         }
         int battery = device.getBattery();
-        holder.tvBattery.setText("" + (battery > 0 ? battery + "%":""));
-        holder.llData.removeAllViews();
+        holder.tvBattery.setText("" + (battery > 0 ? battery + "%":"100%"));
         if (battery >= 0 && battery <= 20) {
-            holder.ivBattery.setImageResource(R.drawable.battery_5);
+            holder.ivBattery.setImageResource(R.drawable.battery_1);
         }
         if (battery > 20 && battery <= 40) {
             holder.ivBattery.setImageResource(R.drawable.battery_4);
@@ -77,25 +79,13 @@ public class BeaconListAdapter extends BaseAdapter<ScannerDevice> {
         return new DeviceViewHolder(view);
     }
 
-    public void setListener(OnAcceptListener oal, OnDismissListener odl) {
-        oAListener = oal;
-        oDListener = odl;
+    public void setListener(OnPlayListener odl) {
+        oPListener = odl;
     }
 
-    public interface OnAcceptListener {
-        /**
-         * Metodo invocado al seleccionar el boton "SI" en la secion de informacion de la pulsera. Ver
-         * la implementacion para mas informacion sobre el procedimiento.
-         */
-        void onAcceptClick(ScannerService beaconXInfo);
-    }
+    public interface OnPlayListener {
 
-    public interface OnDismissListener {
-        /**
-         * Metodo invocado al seleccionar el botón "NO" en la seccion de informacion de la pulsera. Ver
-         * la implementacion para mas información sobre el procedimiento.
-         */
-        void onDismissClick(ScannerService beaconXInfo);
+        void onPlayClicked(ScannerDevice scannerDevice);
     }
 
     class DeviceViewHolder extends ViewHolder {
@@ -105,14 +95,12 @@ public class BeaconListAdapter extends BaseAdapter<ScannerDevice> {
         ImageView ivBattery;
         @Bind(R.id.battery_percent)
         TextView tvBattery;
-        @Bind(R.id.ll_data)
-        LinearLayout llData;
-        @Bind(R.id.accept_button)
-        Button accept_button;
-        @Bind(R.id.dismiss_button)
-        Button dismiss_button;
         @Bind(R.id.tv_mac)
         TextView tvMac;
+        @Bind(R.id.tv_rssi)
+        TextView tvRSSI;
+        @Bind(R.id.iv_start)
+        ImageView ivStart;
 
 
         public DeviceViewHolder(View convertView) {
