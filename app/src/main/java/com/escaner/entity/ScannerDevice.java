@@ -1,21 +1,20 @@
 package com.escaner.entity;
 
-import android.util.SparseArray;
-
 public class ScannerDevice {
 
     private String mac;
     private int battery;
     private String name;
     private int rssi;
-    private SparseArray<String> datas;
+    private boolean saved = false;
+
 
     public ScannerDevice(String macAdd, int battery, String name, int rssi) {
-        datas = new SparseArray<>();
         this.mac = macAdd;
         this.battery = battery;
         this.name = name;
         this.rssi = rssi;
+        saved = false;
     }
 
 
@@ -53,5 +52,13 @@ public class ScannerDevice {
 
     public void setRssi(int rssi) {
         this.rssi = rssi;
+    }
+
+    public boolean isSaved() {
+        return saved;
+    }
+
+    public void setSaved(boolean saved) {
+        this.saved = saved;
     }
 }

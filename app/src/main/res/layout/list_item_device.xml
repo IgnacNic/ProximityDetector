@@ -5,24 +5,31 @@
     android:layout_height="wrap_content"
     android:background="@drawable/shape_radius_white_btn_bg"
     android:orientation="vertical"
-    android:padding="13dp">
+    android:paddingEnd="13dp"
+    android:paddingStart="13dp"
+    android:paddingBottom="5dp">
 
 
-    <RadioGroup
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true">
 
         <ImageView
+            android:layout_marginTop="5dp"
             android:id="@+id/iv_options"
             android:layout_width="40dp"
-            android:layout_height="40dp" />
+            android:layout_height="35dp"
+            android:background="@drawable/save_icon"
+            android:layout_centerHorizontal="true"/>
 
         <RelativeLayout
-            android:id="@+id/iv_start"
+            android:id="@+id/rl_start"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:background="@drawable/shape_20dp_radius_bg">
+            android:background="@drawable/shape_20dp_radius_bg"
+            android:layout_alignTop="@+id/iv_options"
+            android:layout_marginTop="45dp">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -36,13 +43,13 @@
         </RelativeLayout>
 
 
-    </RadioGroup>
+    </RelativeLayout>
 
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="18dp"
         android:src="@drawable/rssi" />
 
 
@@ -50,7 +57,8 @@
         android:id="@+id/ll_display"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_marginTop="13dp">
 
         <RelativeLayout
             android:layout_width="match_parent"

@@ -12,7 +12,22 @@
         android:layout_height="55dp"
         android:background="@color/blue_50619f">
 
+        <LinearLayout
+            android:id="@+id/iv_back"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
 
+            <ImageView
+                android:layout_width="21dp"
+                android:layout_height="17dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="22dp"
+                android:layout_marginEnd="22dp"
+                android:background="@drawable/white_back_icon"
+                android:contentDescription="@string/back"
+                android:rotation="180" />
+
+        </LinearLayout>
 
     </RelativeLayout>
 
@@ -21,6 +36,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
 
 </LinearLayout>

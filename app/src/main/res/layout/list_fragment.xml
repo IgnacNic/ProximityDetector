@@ -25,23 +25,30 @@
             android:scrollbarStyle="outsideOverlay" />
 
         <RelativeLayout
-            android:layout_width="56dp"
-            android:layout_height="56dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginBottom="30dp"
-            android:layout_marginEnd="30dp"
-            android:background="@drawable/shape_30dp_radius_bg">
+            android:layout_alignParentStart="true">
 
-            <ImageView
-                android:id="@+id/iv_refresh"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginStart="13dp"
-                android:layout_marginTop="13dp"
-                android:layout_marginEnd="13dp"
-                android:layout_marginBottom="13dp"
-                android:src="@drawable/refresh" />
+            <RelativeLayout
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginBottom="30dp"
+                android:layout_marginStart="30dp"
+                android:background="@drawable/shape_circle_bg">
+
+                <ImageView
+                    android:id="@+id/iv_refresh"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="13dp"
+                    android:layout_marginTop="13dp"
+                    android:layout_marginEnd="13dp"
+                    android:layout_marginBottom="13dp"
+                    android:src="@drawable/refresh" />
+
+        </RelativeLayout>
+
 
         </RelativeLayout>
 

@@ -10,4 +10,24 @@
         <item name="android:background">@color/grey_b3b3b3</item>
     </style>
 
+    <style name="unchecked_scan_btn">
+        <item name="android:background">@drawable/shape_button_bg</item>
+    </style>
+
+    <style name="checked_scan_btn">
+        <item name="android:background">@drawable/shape_border_blue</item>
+    </style>
+
+    <style name="unchecked_scan_text">
+        <item name="android:textColor">@color/white_fffefe</item>
+        <item name="android:text">@string/escanear</item>
+    </style>
+
+    <style name="checked_scan_text">
+        <item name="android:background">@color/blue_50619f</item>
+        <item name="android:text">@string/escaneando</item>
+    </style>
+
+
+
 </resources>

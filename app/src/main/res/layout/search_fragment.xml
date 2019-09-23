@@ -2,48 +2,76 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/grey_ebebeb">
-
-    <TextView
-        android:id="@+id/tv_device_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/nombre"
-        android:textSize="24sp"
-        android:layout_centerInParent="true"
-        android:textColor="@color/black_012d75"/>
-
-    <TextView
-        android:id="@+id/tv_device_mac"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tv_device_name"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
-        android:text="@string/nombre"
-        android:textSize="14sp"
-        android:textColor="@color/blue_5691fc"/>
+    android:background="@color/grey_f2f2f2">
 
     <RelativeLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/shape_button_bg"
-        android:layout_below="@+id/tv_device_mac"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp">
+        android:layout_alignParentBottom="true"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="20dp"
+        android:paddingBottom="25dp"
+        android:paddingTop="25dp"
+        android:background="@drawable/shape_radius_white_btn_bg">
 
         <TextView
+            android:id="@+id/tv_device_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/escanear"
-            android:textSize="26sp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:layout_marginStart="60dp"
-            android:layout_marginEnd="60dp"
-            android:textColor="@color/white_fffefe"/>
+            android:text="@string/nombre"
+            android:textSize="24sp"
+            android:layout_centerHorizontal="true"
+            android:textColor="@color/black_012d75"/>
+
+        <TextView
+            android:id="@+id/tv_device_mac"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_device_name"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="5dp"
+            android:text="@string/nombre"
+            android:textSize="14sp"
+            android:textColor="@color/blue_5691fc"/>
+
+        <TextView
+            android:id="@+id/tv_device_saved"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_device_mac"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="5dp"
+            android:textSize="12sp"
+            android:textColor="@color/grey_ebebeb"/>
+
+        <RelativeLayout
+            android:id="@+id/rl_scan_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/unchecked_scan_btn"
+            android:layout_below="@+id/tv_device_mac"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp">
+
+            <TextView
+                android:id="@+id/tv_scan_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/unchecked_scan_text"
+                android:textSize="26sp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginStart="60dp"
+                android:layout_marginEnd="60dp"/>
+
+        </RelativeLayout>
 
     </RelativeLayout>
+
+
+
 
 
 </RelativeLayout>

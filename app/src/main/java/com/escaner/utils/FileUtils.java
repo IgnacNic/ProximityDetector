@@ -143,16 +143,6 @@ public class FileUtils {
             if (isExternalStorageWritable()) {
                 fOS.write(("NAME; MAC\n").getBytes());
                 for (ScannerDevice aux : saveList) {
-                    StringBuilder macParsed = new StringBuilder();
-                    if (aux.getMac() != null)
-                        for (int i = 0; i < aux.getMac().length(); i++) {
-                            if (aux.getMac().charAt(i) != ':') {
-                                macParsed.append(aux.getMac().charAt(i));
-                            }
-                            if (i == 8) {
-                                macParsed.append('-');
-                            }
-                        }
                     fOS.write(("" + aux.getName() + "; " + aux.getMac() + "\n").getBytes());
                 }
             }
@@ -187,8 +177,8 @@ public class FileUtils {
         params = line.split(";");
         ScannerDevice ret;
         if (params.length == 2) {
-            if (params[1].length() == 17) {
-                ret = new ScannerDevice(params[1], 0, null, 0);
+            if (params[1].trim().length() == 17) {
+                ret = new ScannerDevice(params[1].trim(), 0, null, 0);
             } else {
                 throw new FormatException("Formato de datos incorrecto (Sección <<MAC>> vacía o longitud incorrecta).");
             }

@@ -9,4 +9,7 @@
     <string name="arrow">▼</string>
     <string name="nombre">NOMBRE</string>
     <string name="escanear">Escanear</string>
+    <string name="escaneando">Escaneando…</string>
+    <string name="guardado">Dispositivo guardado.</string>
+    <string name="back">Atrás</string>
 </resources>

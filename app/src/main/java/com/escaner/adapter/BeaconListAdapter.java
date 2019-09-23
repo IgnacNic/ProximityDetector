@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.escaner.entity.ScannerDevice;
@@ -25,6 +26,7 @@ public class BeaconListAdapter extends BaseAdapter<ScannerDevice> {
     private View view;
     private boolean wasInvisible = true;
     private OnPlayListener oPListener;
+    private OnOptionsListener onOptionsListener;
 
     public BeaconListAdapter(Context context) {
         super(context);
@@ -42,10 +44,18 @@ public class BeaconListAdapter extends BaseAdapter<ScannerDevice> {
         double distance = MokoUtils.getDistance(-75, device.getRssi());
         holder.tvName.setText(TextUtils.isEmpty(device.getName()) ? "N/A" : device.getName());
         holder.tvRSSI.setText("" + device.getRssi());
-        holder.ivStart.setOnClickListener(new View.OnClickListener() {
+        if (device.isSaved()) holder.ivOptions.setBackgroundResource(R.drawable.delete_icon);
+        else holder.ivOptions.setBackgroundResource(R.drawable.save_icon);
+        holder.rlStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 oPListener.onPlayClicked(device);
+            }
+        });
+        holder.ivOptions.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onOptionsListener.onOptionsClicked(device);
             }
         });
         int pulsera;
@@ -55,7 +65,7 @@ public class BeaconListAdapter extends BaseAdapter<ScannerDevice> {
             holder.tvMac.setText("NÚMERO:");
         }
         int battery = device.getBattery();
-        holder.tvBattery.setText("" + (battery > 0 ? battery + "%":"100%"));
+        holder.tvBattery.setText("" + (battery > 0 ? battery + "%":"0%"));
         if (battery >= 0 && battery <= 20) {
             holder.ivBattery.setImageResource(R.drawable.battery_1);
         }
@@ -79,13 +89,19 @@ public class BeaconListAdapter extends BaseAdapter<ScannerDevice> {
         return new DeviceViewHolder(view);
     }
 
-    public void setListener(OnPlayListener odl) {
-        oPListener = odl;
+    public void setListeners(OnPlayListener onPlayListener, OnOptionsListener onOptionsListener) {
+        oPListener = onPlayListener;
+        this.onOptionsListener = onOptionsListener;
     }
 
     public interface OnPlayListener {
 
         void onPlayClicked(ScannerDevice scannerDevice);
+    }
+
+    public interface OnOptionsListener {
+
+        void onOptionsClicked(ScannerDevice scannerDevice);
     }
 
     class DeviceViewHolder extends ViewHolder {
@@ -99,9 +115,10 @@ public class BeaconListAdapter extends BaseAdapter<ScannerDevice> {
         TextView tvMac;
         @Bind(R.id.tv_rssi)
         TextView tvRSSI;
-        @Bind(R.id.iv_start)
-        ImageView ivStart;
-
+        @Bind(R.id.rl_start)
+        RelativeLayout rlStart;
+        @Bind(R.id.iv_options)
+        ImageView ivOptions;
 
         public DeviceViewHolder(View convertView) {
             super(convertView);

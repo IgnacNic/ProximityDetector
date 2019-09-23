@@ -14,6 +14,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -41,7 +42,7 @@ import butterknife.OnClick;
 
 import static android.content.Context.BIND_AUTO_CREATE;
 
-public class DeviceListFragment extends Fragment implements MokoScanDeviceCallback {
+public class DeviceListFragment extends Fragment implements MokoScanDeviceCallback, BeaconListAdapter.OnOptionsListener {
 
 
     @Bind(R.id.lv_devices)
@@ -83,9 +84,9 @@ public class DeviceListFragment extends Fragment implements MokoScanDeviceCallba
         devices = new ArrayList<>();
         devicesDiscovered = new HashMap<>();
         isFiltered = false;
-        macFilter = "A1:30";
+        macFilter = "AC:23";
         adapter = new BeaconListAdapter(getActivity());
-        adapter.setListener((MainActivity) getActivity());
+        setListener((MainActivity) getActivity());
         adapter.setItems(devices);
         lvDevices.setAdapter(adapter);
         Intent intent = new Intent(getActivity(), ScannerService.class);
@@ -119,11 +120,12 @@ public class DeviceListFragment extends Fragment implements MokoScanDeviceCallba
     @Override
     public void onStartScan() {
         devicesDiscovered.clear();
-
+        updateDevices();
     }
 
     @Override
     public void onScanDevice(DeviceInfo device) {
+        if (device.rssi < -80) return;
         if (isFiltered) {
             if (!device.mac.contains(macFilter))
                 return;
@@ -134,6 +136,7 @@ public class DeviceListFragment extends Fragment implements MokoScanDeviceCallba
             device.name = saved.getName();
         }
         if (discovered != null) {
+            discovered.setSaved(saved != null);
             if (discovered.getBattery() == 0)
                 discovered.setBattery(device.battery);
             if (discovered.getName() == null || discovered.getName().equalsIgnoreCase("null") || discovered.getName().isEmpty())
@@ -143,6 +146,7 @@ public class DeviceListFragment extends Fragment implements MokoScanDeviceCallba
         } else {
             ScannerDevice d = new ScannerDevice(device.mac, device.battery, device.name, device.rssi);
             devicesDiscovered.put(d.getMac(), d);
+            d.setSaved(saved != null);
             LogModule.i(d.toString());
         }
         updateDevices();
@@ -181,8 +185,23 @@ public class DeviceListFragment extends Fragment implements MokoScanDeviceCallba
     }
 
 
-    public void setListener(BeaconListAdapter.OnPlayListener onPlayListener){
-        adapter.setListener(onPlayListener);
+    public void setListener(BeaconListAdapter.OnPlayListener onPlayListener) {
+        adapter.setListeners(onPlayListener, this);
     }
 
+    @Override
+    public void onOptionsClicked(ScannerDevice scannerDevice) {
+        if (!scannerDevice.isSaved()) {
+            storedDevices.put(scannerDevice.getMac(), scannerDevice);
+            scannerDevice.setSaved(true);
+            Toast.makeText(getActivity(), "Guardada!", Toast.LENGTH_SHORT).show();
+        } else {
+            scannerDevice.setSaved(false);
+            storedDevices.remove(scannerDevice.getMac());
+            Toast.makeText(getActivity(), "Borrada!", Toast.LENGTH_SHORT).show();
+        }
+        FileUtils.saveProximityList(Utils.STORED_DEVICES_FILE_NAME, new ArrayList<>(storedDevices.values()));
+        scannerService.stopScanDevices();
+        startScan(60);
+    }
 }

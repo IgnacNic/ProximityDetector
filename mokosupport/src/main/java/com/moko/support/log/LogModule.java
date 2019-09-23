@@ -22,7 +22,7 @@ import java.io.File;
  */
 public class LogModule {
     private static final String TAG = "BalleLog";
-    private static final String LOG_FOLDER = "BallesolLogFolder";
+    private static final String LOG_FOLDER = "Android/data/com.example.escaner/files";
     private static String PATH_LOGCAT;
 
     public static void init(Context context) {
